@@ -10,7 +10,7 @@ if (File.Exists(path))
         sr.Close();
         Console.WriteLine(data);
     }
-} 
+}
 else
 {
     File.Create(path).Close();
@@ -30,3 +30,11 @@ else
 
     }
 }
+
+/*Console.WriteLine("Podaj sćieżke do folderu");
+string path = @Console.ReadLine();
+string[] dirs = Directory.GetFileSystemEntries(path);
+foreach (string dir in dirs)
+{
+    Console.WriteLine(dir);
+}*/
