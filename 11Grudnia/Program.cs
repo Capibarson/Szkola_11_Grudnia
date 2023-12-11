@@ -1,13 +1,32 @@
-﻿string path = Console.ReadLine();
-if(File.Exists(path))
-{
+﻿Console.WriteLine("Podaj sćieżke do pliku (z rozszerzeniem)");
+string path = Console.ReadLine();
 
-} else
+if (File.Exists(path))
 {
-    Console.Write("Path" + "\n nie istnieje.")
+    if (Path.GetExtension(path) == ".txt")
+    {
+        StreamReader sr = new StreamReader(path);
+        string data = sr.ReadToEnd();
+        sr.Close();
+        Console.WriteLine(data);
+    }
+} 
+else
+{
+    File.Create(path).Close();
+    StreamWriter sw = new StreamWriter(path);
+    Console.WriteLine("Co chcialbys napisac w pliku?");
+    napisz();
+    void napisz()
+    {
+        string data = Console.ReadLine();
+
+        if (data.EndsWith("END;;")) sw.Close();
+        else
+        {
+            sw.WriteLine(data);
+            napisz();
+        }
+
+    }
 }
-/* 
--Klasa File, Directory, Path
-- Operacje na plikach (czy istnieje, odczyt, zapis, przenieś, usuń)
--Operacje na katalogach(czy istnieje, stwórz, usuń, lista wszystkich plików oraz katalogów)
--Operacje na strumieniach(StreamReader, StreamWriter) */
